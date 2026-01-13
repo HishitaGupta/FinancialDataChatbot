@@ -2,6 +2,7 @@ import os
 import json
 from huggingface_hub import InferenceClient
 from dotenv import load_dotenv 
+import re
 
 
 load_dotenv()
@@ -202,7 +203,20 @@ LIMIT 1;
             temperature=0
         )
 
-        text = response.choices[0].message.content.strip()
-        text = text.replace("```json", "").replace("```", "").strip()
+        print(response)
 
-        return json.loads(text)
+        text = response.choices[0].message.content.strip()
+
+      # 1️⃣ Try fenced ```json``` block
+        fenced_match = re.search(r"```json\s*(\{.*?\})\s*```", text, re.DOTALL)
+        if fenced_match:
+            return json.loads(fenced_match.group(1))
+
+        # 2️⃣ Try any JSON object in text
+        raw_json_match = re.search(r"(\{[\s\S]*\})", text)
+        if raw_json_match:
+            print(json.loads(raw_json_match.group(1)))
+            return json.loads(raw_json_match.group(1))
+
+        # 3️⃣ Nothing worked
+        raise ValueError("No valid JSON found in LLM response")

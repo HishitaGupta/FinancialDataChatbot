@@ -26,6 +26,7 @@ async def ask_question(q: Question):
         answer = chatbot.answer(q.question)
         return {"answer": answer}
     except Exception as e:
+        print(e)
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/health")
