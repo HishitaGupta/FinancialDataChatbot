@@ -1,6 +1,10 @@
 import os
 import json
 from huggingface_hub import InferenceClient
+from dotenv import load_dotenv 
+
+
+load_dotenv()
 
 class SQLGenerator:
     def __init__(self, api_key=None, model_name="Qwen/Qwen2.5-7B-Instruct"):
