@@ -1,0 +1,32 @@
+# Virtual environment
+venv/
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs
+*.log
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Database files
+*.db
+*.sqlite
+
+# Uvicorn/Gunicorn reload artifacts
+*.pid
+
+# Build / dist
+build/
+dist/
+*.egg-info/
