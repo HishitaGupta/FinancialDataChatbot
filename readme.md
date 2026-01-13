@@ -4,6 +4,9 @@ A production-ready **financial analytics chatbot** that answers natural-language
 
 This project converts user questions → optimized SQL → executes on a financial database → explains results in natural language.
 
+Live Deployment - [https://chatbot-for-csv2.streamlit.app/](https://chatbot-for-csv2.streamlit.app/)
+
+
 ---
 
 ##  Key Features
